@@ -43,7 +43,7 @@ async def get_users(
 @router.get("/{user_id}", response_model=User)
 async def get_user_by_id(
     user_id: str,
-    current_user: User = Depends(AuthManager.get_current_admin_user),
+    current_user: User = Depends(get_current_admin_user),
     db: AsyncIOMotorDatabase = Depends(get_database)
 ):
     """Get user by ID (admin only)"""
