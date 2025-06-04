@@ -6,8 +6,13 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from motor.motor_asyncio import AsyncIOMotorDatabase
 import os
-from .models import TokenData, User, UserRole
-from .database import get_database
+import sys
+
+# Add path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from models import TokenData, User, UserRole
+from database import get_database
 
 # Security configuration
 SECRET_KEY = os.environ.get("SECRET_KEY", "your-secret-key-here-change-in-production")
