@@ -60,12 +60,15 @@ class AuthManager:
     @staticmethod
     async def authenticate_user(db: AsyncIOMotorDatabase, email: str, password: str) -> Optional[User]:
         """Authenticate user with email and password"""
-        user = await AuthManager.get_user_by_email(db, email)
-        if not user:
+        user_doc = await db.users.find_one({"email": email})
+        if not user_doc:
             return None
-        if not AuthManager.verify_password(password, user.password_hash):
+        if not AuthManager.verify_password(password, user_doc["password_hash"]):
             return None
-        return user
+        
+        # Create User object without password_hash
+        user_data = {k: v for k, v in user_doc.items() if k != "password_hash"}
+        return User(**user_data)
 
     @staticmethod
     async def get_current_user(
