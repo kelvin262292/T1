@@ -15,7 +15,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import our modules
 from models import StatusCheck, StatusCheckCreate
-from auth import AuthManager
+from auth import AuthManager, get_current_active_user
 from database import connect_to_mongo, close_mongo_connection, get_database, create_indexes
 from routes.auth import router as auth_router
 from routes.users import router as users_router
