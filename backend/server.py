@@ -87,7 +87,7 @@ async def get_status_checks(
 # Protected status endpoint example
 @api_router.get("/status/protected", response_model=List[StatusCheck])
 async def get_protected_status_checks(
-    current_user = Depends(AuthManager.get_current_active_user),
+    current_user = Depends(get_current_active_user),
     db = Depends(get_database)
 ):
     """Get status checks (authentication required)"""
