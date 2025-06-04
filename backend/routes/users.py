@@ -62,7 +62,7 @@ async def get_user_by_id(
 async def update_user_by_id(
     user_id: str,
     user_update: UserUpdate,
-    current_user: User = Depends(AuthManager.get_current_admin_user),
+    current_user: User = Depends(get_current_admin_user),
     db: AsyncIOMotorDatabase = Depends(get_database)
 ):
     """Update user by ID (admin only)"""
