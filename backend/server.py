@@ -10,11 +10,11 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 # Import our modules
-from models import StatusCheck, StatusCheckCreate
-from auth import AuthManager
-from database import connect_to_mongo, close_mongo_connection, get_database, create_indexes
-from routes.auth import router as auth_router
-from routes.users import router as users_router
+from .models import StatusCheck, StatusCheckCreate
+from .auth import AuthManager
+from .database import connect_to_mongo, close_mongo_connection, get_database, create_indexes
+from .routes.auth import router as auth_router
+from .routes.users import router as users_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
