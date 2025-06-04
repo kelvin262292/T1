@@ -54,7 +54,9 @@ class AuthManager:
         """Get user by email from database"""
         user_doc = await db.users.find_one({"email": email})
         if user_doc:
-            return User(**user_doc)
+            # Create User object without password_hash
+            user_data = {k: v for k, v in user_doc.items() if k != "password_hash"}
+            return User(**user_data)
         return None
 
     @staticmethod
