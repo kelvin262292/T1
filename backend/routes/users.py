@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from models import User, UserCreate, UserUpdate, UserRole
-from auth import AuthManager
+from auth import AuthManager, get_current_admin_user
 from database import get_database
 import logging
 
