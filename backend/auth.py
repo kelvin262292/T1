@@ -99,15 +99,17 @@ class AuthManager:
         return user
 
     @staticmethod
-    async def get_current_active_user(current_user: User = Depends(get_current_user)) -> User:
-        """Get current active user"""
+    def get_current_active_user(current_user: User = Depends(get_current_user)) -> User:
+        """Get current active user (sync wrapper)"""
+        # This function is actually sync - the dependency injection handles the async part
         if not current_user.is_active:
             raise HTTPException(status_code=400, detail="Inactive user")
         return current_user
 
     @staticmethod
-    async def get_current_admin_user(current_user: User = Depends(get_current_active_user)) -> User:
-        """Get current admin user"""
+    def get_current_admin_user(current_user: User = Depends(get_current_active_user)) -> User:
+        """Get current admin user (sync wrapper)"""
+        # This function is actually sync - the dependency injection handles the async part
         if current_user.role != UserRole.ADMIN:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
