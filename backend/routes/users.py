@@ -113,7 +113,7 @@ async def update_user_by_id(
 @router.delete("/{user_id}")
 async def delete_user_by_id(
     user_id: str,
-    current_user: User = Depends(AuthManager.get_current_admin_user),
+    current_user: User = Depends(get_current_admin_user),
     db: AsyncIOMotorDatabase = Depends(get_database)
 ):
     """Delete user by ID (admin only)"""
