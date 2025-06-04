@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from models import UserCreate, UserLogin, Token, User, UserUpdate
-from auth import AuthManager, ACCESS_TOKEN_EXPIRE_MINUTES
+from auth import AuthManager, ACCESS_TOKEN_EXPIRE_MINUTES, get_current_active_user
 from database import get_database
 import logging
 
