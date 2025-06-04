@@ -19,7 +19,7 @@ async def get_users(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=1000),
     role: Optional[UserRole] = None,
-    current_user: User = Depends(AuthManager.get_current_admin_user),
+    current_user: User = Depends(get_current_admin_user),
     db: AsyncIOMotorDatabase = Depends(get_database)
 ):
     """Get all users (admin only)"""
